@@ -1,0 +1,13 @@
+{{extend 'layout.html'}}
+{{if len(tagname)==0:}}
+<h3>No tags have been attached by you</h3>
+{{else:}}
+<h2 align="center">Notes with the corresponding Tags</h2>
+{{for i in range(len(tagname)):}}
+<h4>Tag name : {{=tagname[i]}}</h4>
+{{for j in range(len(notest[i])):}}
+{{=LI(A(notest[i][j], _href=URL('show',args=notest[i][j].strip())))}}</li>
+{{pass}}
+<hr color="#0033cc"></hr>
+{{pass}}
+{{pass}}

@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}
+<h1 style="text-align:center">MY PROFILE<br/><br/></h1>
+<h2><u>User Details:</u></h2>
+<img width="123px" height="146px" style="float:right" position="relative" src="{{=URL('download',args=auth.user.pic)}}" /><br/>
+<div style="font-family:Times"><font size="3">Name : {{=auth.user.first_name}} {{=auth.user.last_name}}<br/>
+Email ID: {{=auth.user.email}}<br/>
+Contact No. : {{=auth.user.contact}}</font></div>
+<div>
+<br/>
+</div>
+<br/><br/><br/><br/><br/><br/><br/><br/></br>
+{{pass}}

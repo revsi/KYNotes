@@ -1,0 +1,20 @@
+{{extend 'layout.html'}}
+<html>
+	<title>Edit Your Notes !</title>
+	<h3>Welcome {{=auth.user.first_name}}</h3>
+{{ if len(a)>0:}}
+{{x='Your Tasks are '}}
+{{else:}}
+{{x='You don\'t have any tasks right now'}}
+{{pass}}
+<hr>
+	<h5>{{=x}}</h5>
+	<table>
+{{for  i in range(0,len(a)):}}
+	<tr>
+	<td><ul>{{=LI(A(a[i]['tit'], _href=URL('shtask',args=a[i]['tit'].strip())))}} </ul></td>
+	<td><button onclick="document.location='{{=URL(r=request,f='taskedit1',args=a[i]['tit'])}}';">Edit</button></td>
+	</tr>
+{{pass}}
+	</table>
+</html>

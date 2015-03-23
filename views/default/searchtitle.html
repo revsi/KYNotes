@@ -1,0 +1,10 @@
+{{extend 'layout.html'}}
+{{if len(nam)>0:}}
+{{x='Here are your results!'}}
+{{else:}}
+{{x='There is no results!'}}
+{{pass}}
+<h3>{{=x}}</h3>
+{{ for i in nam:}}
+	{{=LI(A(i.title,_href=URL('show',args=i.title)))}}
+{{pass}}

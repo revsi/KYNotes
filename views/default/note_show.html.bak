@@ -1,0 +1,78 @@
+{{extend 'layout.html'}}
+<html>
+<head>
+<style>a:link{
+}
+
+a{
+text-decoration:none;
+
+}
+
+a:hover{
+
+  }
+	</style>
+</head>
+{{for i in range(len(d)):}}
+<script>
+$(document).ready(function() {
+		    $('#collapse{{=i}}').collapse('hide');
+		    });
+</script>
+{{pass}}
+
+{{ if len(d)>0:}}
+{{x='Your Notes are '}}
+	<h3 style='text-align:center'>Notes List :</h3>
+	<table class='table'>
+	<thead>
+	<th  width='30%'><span color='black'><a href={{=URL('nshow',args=1)}} data-toggle="tooltip"  title="Sort By Title">Title</a></span></th>
+		<th width='30%'><a href={{=URL('nshow',args=2)}} data-toggle="tooltip" title="Sort By Creation Date">Creation Date</a></th>
+	<th width='30%'><a href={{=URL('nshow',args=3)}} data-toggle="tooltip" title="Sort by Modification Date">Modification Date</a></th>
+	</thead>
+	</table>
+{{for  i in range(len(d)):}}
+	<div class="accordion" id="accordion2">
+	  <div class="accordion-group">
+	      <div class="accordion-heading">
+	            <a style='color:black'class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse{{=i}}">
+		    <table>
+		    <col width='450'>
+		    <col width='450'>
+		    <col width='400'>
+		    <tr><td><i class="icon-plus"></i>&nbsp;{{=(A(d[i]['title'], _href=URL('show',args=d[i]['title'].strip())))}}
+</td><td >{{=d[i]['cd'].date()}}</td>
+<td >
+{{=d[i]['md'].date()}}
+</td></tr>
+			</table>
+</a>
+	      </div>
+	      <div id="collapse{{=i}}" class="accordion-body collapse in">
+	            <div class="accordion-inner">
+{{if d[i]['priority']=='Public':}}
+<div class="progress">
+<div class="bar bar-success" style="width:100%">Public Note</div>
+</div>
+{{elif d[i]['priority']=='Private':}}
+<div class="progress">
+<div class="bar bar-danger" style="width:100%">Private Note</div>
+</div>
+{{pass}}
+<pre>
+{{=d[i]['val']}}
+</pre>
+<h5 style='text-align:right'>Creation Date :&nbsp;&nbsp;&nbsp;{{=d[i]['cd'].date()}}</h5>
+<h5 style='text-align:right'>Modification Date :&nbsp;&nbsp;&nbsp;{{=d[i]['md'].date()}}</h5>
+	     </div>
+	</div>
+	</div>
+
+
+{{pass}}
+	{{else:}}
+<h4>You don't have any notes right now</h4>
+<a href={{=URL('index')}} >Go back to home</a>
+{{pass}}
+</html>

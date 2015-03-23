@@ -1,0 +1,12 @@
+{{extend 'layout.html'}}
+<html>
+	<title>Create</title>
+	<h3>Show Your Creativity {{=auth.user.first_name}}</h3>
+		{{=form.custom.begin}}
+		{{form.custom.widget.title['_placeholder']='Note Title'}}
+		{{form.custom.widget.description['_placeholder']='Description'}}
+		{{form.custom.widget.val['_placeholder']='Write your note here'}}
+		{{form.custom.widget.tags['_placeholder']='Tags Here'}}
+		{{=form.custom.end}}
+		{{=form}}
+</html>

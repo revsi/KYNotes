@@ -1,0 +1,85 @@
+{{extend 'layout.html'}}
+<html>
+<head>
+<style>a:link{
+}
+
+a{
+text-decoration:none;
+
+}
+
+a:hover{
+
+  }
+	</style>
+</head>
+{{for i in range(len(d)):}}
+<script>
+$(document).ready(function() {
+		    $('#collapse{{=i}}').collapse('hide');
+		    });
+</script>
+{{pass}}
+
+{{ if len(d)>0:}}
+{{x='Your Tasks are '}}
+	<h3 style='text-align:center'>Tasks List :</h3>
+	<table class='table'>
+	<thead>
+	<th  width='30%'><span color='black'><a href={{=URL('task_show',args=1)}} data-toggle="tooltip"  title="Sort By Title">Title</a></span></th>
+		<th width='30%'><a href={{=URL('task_show',args=2)}} data-toggle="tooltip" title="Sort By Creation Date">Due Date</a></th>
+		<th width='30%'><a href={{=URL('task_show',args=3)}} data-toggle="tooltip" title="Sort By Status">Status</a></th>
+	</thead>
+	</table>
+{{for  i in range(len(d)):}}
+	<div class="accordion" id="accordion2">
+	  <div class="accordion-group">
+	      <div class="accordion-heading">
+	            <a style='color:black'class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse{{=i}}">
+		    <table>
+		    <col width='450'>
+		    <col width='450'>
+		    <col width='450'>
+		    <tr><td><i class="icon-plus"></i>&nbsp;{{=(A(d[i]['tit'], _href=URL('show_task',args=d[i]['tit'])))}}
+</td><td >{{=d[i]['pending'].date()}}</td>
+{{if a[i][1]=='Pending':}}
+{{x="text-warning"}}
+{{pass}}
+{{if a[i][1]=='Expired':}}
+{{x="text-error"}}
+{{pass}}
+{{if a[i][1]=='Done':}}
+{{x="text-success"}}
+{{pass}}
+<td><p class="{{=x}}">{{=a[i][1]}}</p></td>
+</tr>
+			</table>
+</a>
+	      </div>
+	      <div id="collapse{{=i}}" class="accordion-body collapse in">
+	            <div class="accordion-inner">
+		    <h5>Description :</h5>
+<pre>
+{{=d[i]['description']}}
+</pre>
+	{{if d[i]['done']==False and a[i][1]=='Pending':}}
+	<button style="float:right" class="btn btn-success" onclick="document.location='{{=URL(r=request,f='didtask',args=d[i]['tit'])}}';">Completed</button>
+{{pass}}
+	{{if d[i]['done']==False and a[i][1]=='Expired':}}
+	<button style="float:right" class="btn btn-danger disabled" >Completed</button>
+{{pass}}
+	{{if d[i]['done']==True:}}
+	<button style="float:right" class="btn btn-warning" onclick="document.location='{{=URL(r=request,f='ndidtask',args=d[i]['tit'])}}';">Not Completed</button>
+{{pass}}
+	</div>
+	</div>
+	</div>
+
+
+{{pass}}
+	{{else:}}
+<h4>You don't have any tasks right now</h4>
+<a href={{=URL('index')}} >Go back to home</a>
+{{pass}}
+</html>

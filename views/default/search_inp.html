@@ -1,0 +1,66 @@
+{{extend 'layout.html'}}
+{{for i in range(1,4):}}
+<script>
+$(document).ready(function() {
+		    $('#collapse{{=i}}').collapse('hide');
+		    });
+</script>
+{{pass}}
+{{i=2}}
+
+	<h3 style='text-align:center'>Notes List :</h3>
+	<div class="accordion" id="accordion2">
+	  <div class="accordion-group">
+	      <div class="accordion-heading">
+	            <a style='color:black'class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse1">
+		    <i class="icon-plus"></i>&nbsp;<span style="color:green">{{=d[0]}}</span>
+
+</a>
+	      </div>
+	      <div id="collapse1" class="accordion-body collapse in" data-trigger="">
+	            <div class="accordion-inner">
+{{=a[0]}}
+	     </div>
+	</div>
+	<div class="accordion-heading">
+	            <a style='color:black'class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse2">
+		    <i class="icon-plus"></i>&nbsp;<span style="color:green">{{=d[1]}}</span>
+
+</a>
+	      </div>
+	      <div id="collapse2" class="accordion-body collapse in" data-trigger="">
+	            <div class="accordion-inner">
+{{=a[1]}}
+	     </div>
+	</div>
+	<div class="accordion-heading">
+	            <a style='color:black'class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapse3">
+		    <i class="icon-plus"></i>&nbsp;<span style="color:green">{{=d[2]}}</span>
+
+</a>
+	      </div>
+	      <div id="collapse3" class="accordion-body collapse in" data-trigger="">
+	            <div class="accordion-inner">
+{{=a[2]}}
+	     </div>
+</div>
+</div>
+
+	</div>
+
+	<div>
+	<script>
+  (function() {
+    var cx = '000850823823503944128:nlviia1zivy';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:search></gcse:search>
+	</div>
+{{pass}}

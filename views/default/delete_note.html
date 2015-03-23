@@ -1,0 +1,37 @@
+{{extend 'layout.html'}}
+<html>
+	<title>Delete</title>
+	<h3>Welcome {{=auth.user.first_name}}</h3>
+{{a=b.split('@')}}
+{{ if len(a)>1:}}
+{{x='Your Notes are '}}
+{{else:}}
+{{x='You don\'t have any notes right now'}}
+{{pass}}
+<hr>
+	<h5>{{=x}}</h5>
+	<table>
+{{for  i in range(1,len(a)):}}
+	<tr>
+	<td><ul>{{=LI(A(a[i], _href=URL('show',args=a[i].strip())))}} </ul></td>
+	<td><a href="#myModal" role="button" class="btn" data-toggle="modal">Delete</a></td>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">Confirmation</h3>
+</div>
+<div class="modal-body">
+<h5>Are You Sure ?</h5>
+<p>Data once deleted cannot be retrieved</p>
+</div>
+<div class="modal-footer">
+	<button onclick="document.location='{{=URL(r=request,f='delet',args=a[i])}}';">Yes</button>
+	<button class="btn" data-dismiss="modal" aria-hidden="true" onclick="document.location='{{=URL(r=request,f='eddel')}}';">No</button>
+</div>
+</div>
+</tr>
+{{pass}}
+	</table>
+</html>

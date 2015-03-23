@@ -1,0 +1,100 @@
+{{extend 'layout.html'}}
+
+<title>Welcome {{=auth.user.first_name}}</title>
+
+<h3>Welcome {{=auth.user.first_name}}</h3>
+
+<h4 style="text-align:center">MY PROFILE<br/><br/></h4>
+<h5><u>User Details:</u></h5>
+<img width="123px" height="146px" style="float:right" position="relative" src="{{=URL('download',args=auth.user.pic)}}" /><br/>
+<div style="font-family:Times"><font size="3">Name : {{=auth.user.first_name}} {{=auth.user.last_name}}<br/>
+Email ID: {{=auth.user.email}}<br/>
+Contact No. : {{=auth.user.contact}}</font></div>
+<div>
+<br/>
+
+<table >
+<col width="500">
+<col width="500">
+<thead>
+<th><b>NOTES</b></th>
+<th><b>TASKS</b></th>
+</thead>
+<tr>
+<td>
+{{ if len(a)>0:}}
+{{x='Your Notes are '}}
+{{else:}}
+{{x='You don\'t have any notes right now'}}
+{{pass}}
+
+<h5>{{=x}}</h5>
+<table class='table table-hover'>
+{{for  i in range(len(a)):}}
+<tr>
+<td>
+<li><a href="{{=URL(r=request,f='show',args=(a[i]['title']))}}" data-toggle="tooltip" data-trigger="hover" title="{{=a[i]['description']}}">{{=a[i]['title']}}</a></li>
+</td>
+</tr>
+{{pass}}
+</td>
+</table>
+<td>
+{{if len(c)==0:}}
+{{x='You don\'t have any tasks right now'}}
+<h5>{{=x}}</h5>
+{{pass}}
+
+{{if len(c)>0:}}
+
+{{if q==1:}}
+<h5 >Pending Task Are :</h5>
+
+<table class="table table-hover" >
+
+{{for i in range(len(q1)):}}
+<tr><td><li>
+{{if q1[i]['done']==False:}}
+<a href="{{=URL(r=request,f='shtask',args=(q1[i]['tit']))}}" data-toggle="tooltip" data-trigger="hover" title="{{=q1[i]['description']}}">{{=q1[i]['tit']}}</a>
+{{pass}}
+</li></td></tr>
+{{pass}}
+</table>
+{{pass}}
+{{pass}}
+</li>
+{{if q==1:}}
+<br/>
+{{pass}}
+
+{{if p==1:}}
+<h5>Completed Tasks :</h5>
+<table class="table table-hover" >
+{{for i in range(len(c)):}}
+{{if c[i]['done']==True:}}
+<tr><td><li>
+<a href="{{=URL(r=request,f='shtask',args=(c[i]['tit']))}}" data-toggle="popover" data-trigger="hover"  title="{{=c[i]['description']}}">{{=c[i]['tit']}}</a>
+{{pass}}
+</li></td></tr>
+{{pass}}
+{{pass}}
+</table>
+<table class="table table-hover" >
+{{if p==1:}}
+<br/>
+{{pass}}
+{{if r==1:}}
+<h5 >Expired tasks Are :</h5>
+{{for i in range(len(r1)):}}
+<tr><td><li>
+{{if r1[i]['done']==False:}}
+<a href="{{=URL(r=request,f='shtask',args=(r1[i]['tit']))}}" data-toggle="popover" data-trigger="hover" title="{{=r1[i]['description']}}">{{=r1[i]['tit']}}</a>
+{{pass}}
+</li></td></tr>
+{{pass}}
+{{pass}}
+</table>
+</td></tr>
+</table>
+{{pass}}
+</html>

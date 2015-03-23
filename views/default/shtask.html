@@ -1,0 +1,34 @@
+{{extend 'layout.html'}}
+<html>
+	<title>Task</title>
+	<h3 align = "center">Title : {{=title}}</h3>
+	{{if a[0]['done']==False:}}<!--also don't show when the time has elapsed --!>
+	<h4 align="center">Due Date : {{=pending.date()}}</h4>
+{{else:}}
+<h4 align="center">Task Done</h4>
+{{pass}}
+	<body>
+		<b>Description :</b></br> <pre>{{=description}}</pre></br></br></br>
+		<div align="left">
+			<button onclick="document.location='{{=URL(r=request,f='taskedit',args=title)}}';">Edit</button>
+			<a href="#myModal" role="button" class="btn" data-toggle="modal">Delete</a>
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">Confirmation</h3>
+</div>
+<div class="modal-body">
+<h5>Are You Sure ?</h5>
+<p> Data once deleted cannot be retrieved </p>
+</div>
+<div class="modal-footer">
+	<button onclick="document.location='{{=URL(r=request,f='taskdel',args=title)}}';">Yes</button>
+	<button onclick="document.location='{{=URL(r=request,f='index')}}';">No</button>
+</div>
+</div>
+			
+		</div>
+	</body>
+
+</html>

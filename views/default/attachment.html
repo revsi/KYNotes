@@ -1,0 +1,10 @@
+{{extend 'layout.html'}}
+<html>
+	<h3>{{=message}}</h3>
+	<table>
+	<tr>
+	<td><button onclick="document.location='{{=URL(r=request,f='attachment_upload')}}';">Yes</button></td>
+	<td><button onclick="document.location='{{=URL(r=request,f='show',args=session.title)}}';">No</button></td>
+	</tr>
+	</table>
+</html>

@@ -1,0 +1,10 @@
+{{extend 'layout.html'}}
+<html>
+		{{ form.attributes['_autocomplete'] = "off" }}
+		{{=form.custom.begin}}
+		{{form.custom.widget.title['_placeholder']='Task Title'}}
+		{{form.custom.widget.des['_placeholder']='Short Description'}}
+		{{form.custom.widget.pen['_placeholder']='yyyy-mm-dd'}}
+		{{=form.custom.end}}
+{{=form}}
+</html>

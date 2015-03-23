@@ -1,0 +1,19 @@
+{{extend 'layout.html'}}
+{{if len(nam)==0:}}
+{{x="There are no notes on that date based on the Creation date!"}}
+{{else:}}
+{{x="The search results for notes created on "+a+" are :"}}
+{{pass}}
+<h4>{{=x}}</h4>
+{{for i in range(len(nam)):}}
+{{=LI(A(nam[i].title,_href=URL('show',args=nam[i].title)))}}
+{{pass}}
+{{if len(nam2)==0:}}
+{{x="There are no notes on that date based on the Modification date!"}}
+{{else:}}
+{{x="The search results for notes modified on "+a+" are :"}}
+{{pass}}
+<h4>{{=x}}</h4>
+{{for i in range(len(nam2)):}}
+{{=LI(A(nam2[i].title,_href=URL('show',args=nam2[i].title)))}}
+{{pass}}

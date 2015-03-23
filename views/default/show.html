@@ -1,0 +1,67 @@
+{{extend 'layout.html'}}
+<html>
+	<title>Notes List</title>
+	<h3 align = "center">Title : {{=title}}</h4>
+	<h3 align="center">Description : {{=des}}</h4>
+	<body>
+	{{if pr=='Public':}}
+	<div class="progress">
+	<div class="bar bar-success" style="width:100%">Public Note</div>
+	</div>
+	{{pass}}
+	{{if pr=='Private':}}
+	<div class="progress">
+	<div class="bar bar-danger" style="width:100%">Private Note</div>
+	</div>
+	{{pass}}
+		<b>Content :</b></br> <pre>{{=val}}</pre></br></br></br>
+		<div align="left">
+			<button onclick="document.location='{{=URL(r=request,f='edit',args=title)}}';">Edit</button>
+			<a href="#myModal" role="button" class="btn" data-toggle="modal">Delete</a>
+
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">Confirmation</h3>
+</div>
+<div class="modal-body">
+<h5>Are You Sure ?</h5>
+<p>Data once deleted cannot be retrieved</p>
+</div>
+<div class="modal-footer">
+	<button onclick="document.location='{{=URL(r=request,f='delet',args=title)}}';">Yes</button>
+	<button class="btn" data-dismiss="modal" aria-hidden="true" onclick="document.location='{{=URL(r=request,f='show',args=title)}}';">No</button>
+</div>
+</div><button onclick="document.location='{{=URL(r=request,f='crnote',args=title)}}';">Download</button>
+			<button onclick="document.location='{{=URL(r=request,f='ma',args=title)}}';">Send me a copy</button>
+			
+			</div>
+			</br>
+	<table>
+	<tr>
+	<td><h4> Attachments :</h4></td>
+	<td></td>
+	<td style="text-align:right"><button onclick="document.location='{{=URL(r=request,f='cratt')}}';">Add</button></td>
+	</tr>
+	</table>
+	</br>
+	<table class="table">
+	{{for i in range (len(l)):}}
+	<tr>
+		<td width:'50%'>{{=l[i]['nm']}}</td>
+		<td width:'50%' style="text-align:right"><button class="btn btn-inverse" onclick="document.location='{{=URL(r=request,f='attdel1',args=l[i]['fil'])}}';"> Delete </button>&nbsp;&nbsp;<button class="btn btn-inverse" onclick="document.location='{{=URL(r=request,f='download',args=l[i]['fil'])}}';">Download</button></td>
+	</tr>
+{{pass}}
+	</table>
+
+	
+		<div style="float:right">
+		</br><b><u>Tags attached :</b></u> {{=tags}}</br>
+		<b>Time of creation : </b> {{=ct}}</br>
+		<b>Time of last modification : </b> {{=mt}}
+		</div>
+
+	</body>
+
+</html>
