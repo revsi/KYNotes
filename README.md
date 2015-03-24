@@ -19,3 +19,15 @@ Profile
 
 
 
+Edit
+
+![Alt text](http://imgur.com/s3uFfEX.png "Edit")
+
+
+
+Search
+
+![Alt text](http://imgur.com/RaUdYFi.png "Search")
+
+
+
