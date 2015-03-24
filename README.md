@@ -1,4 +1,4 @@
-Know You Notes
+Know Your Notes
 ====================
 ITWS-2 project Monsoon 2014 
 IIIT Hyderabad
